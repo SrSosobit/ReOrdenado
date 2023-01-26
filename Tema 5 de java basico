@@ -1,0 +1,45 @@
+import java.util.List;
+
+public class Main {
+
+    static CocheCRUD cocheCrud = new CocheCRUDImpl();
+    public static void main(String[] args) {
+
+
+        cocheCrud.save(new Coche());
+        cocheCrud.findAll();
+        cocheCrud.delete(new Coche());
+    }
+}
+
+ class Coche {
+}
+
+interface CocheCRUD {
+
+    void save(Coche coche);
+
+    List<Coche> findAll();
+
+    void delete(Coche coche);
+}
+
+
+class CocheCRUDImpl implements CocheCRUD{
+
+    @Override
+    public void save(Coche coche) {
+        System.out.println("save");
+    }
+
+    @Override
+    public List<Coche> findAll() {
+        System.out.println("finAll");
+        return null;
+    }
+
+    @Override
+    public void delete(Coche coche) {
+        System.out.println("delete");
+    }
+}
