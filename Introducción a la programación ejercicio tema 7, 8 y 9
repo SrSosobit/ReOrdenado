@@ -1,0 +1,225 @@
+import java.io.*;
+import java.util.*;
+
+import static java.lang.System.out;
+
+
+public class Main {
+
+    public static void main(String[] args) /*throws ArithmeticException*/ {
+
+        Scanner Capturador = new Scanner(System.in);
+
+        //el código que devuelva una cadena al revés
+        out.println("Ingrese una palabra o frace");
+        String Frase = Capturador.nextLine();
+        int i = Frase.length();
+        do {
+            out.print(Frase.charAt(i - 1));
+            i--;
+        } while (i > 0);
+
+        out.println();
+        //Crea un array unidimensional de Strings
+        String[] Palabras = new String[]{"lana", "lomo", "ladrillo"};
+        out.println();
+        for (int b = 0; b < Palabras.length; b++) {
+            out.println(Palabras[b]);
+        }
+
+        out.println();
+        //Crea un array bidimensional de enteros y recórrelo
+        int[][] Numeros = new int[3][2];
+        int e = 0;
+        for (int j = 0; j < 3; j++) {
+            out.println();
+            for (int k = 0; k < 2; k++) {
+                e++;
+                Numeros[j][k] = e;
+                out.print(Numeros[j][k] + "(" + k + "," + j + ")   ");
+
+            }
+        }
+
+        out.println();
+        out.println();
+        //Crea un "Vector"...
+        Vector<Integer> vector = new Vector();
+        vector.add(1);
+        vector.add(2);
+        vector.add(3);
+        vector.add(4);
+        vector.add(5);
+        vector.remove(1);
+        vector.remove(2);
+        out.println(vector);
+
+        out.println();
+        //Indica cuál es el problema de utilizar un Vector...
+        out.print("Es indebido usar un Vector sin haberlo aproccimado en la cantidad de elementos, esto devido al alto consumo de recursos. Vector es como un array con ia,si se llena se expande automaticamente creando una copia mas grande de si, pero no reduce su tamaño de la misma forma; por otro lado su capacidad estandar inicial no es grande");
+
+        out.println();
+        //Crea un ArrayList de tipo String, con 4 elem...
+        ArrayList<String> Lista = new ArrayList<>();
+        Lista.add("logo");
+        Lista.add("nombre");
+        Lista.add("color");
+        Lista.add("material");
+        LinkedList<String> Lista2 = new LinkedList<>();
+        for (int x = 0; x < Lista.size(); x++) {
+            Lista2.add(Lista.get(x));
+        }
+        for (int x = 0; x < Lista.size(); x++) {
+            out.println(Lista.get(x));
+            out.println(Lista2.get(x));
+        }
+
+
+        out.println();
+        //Crea un ArrayList de tipo int
+        ArrayList<Integer> ListaInt = new ArrayList<Integer>();
+        for (int x = 1; x <= 10; x++) {
+            ListaInt.add(x);
+        }
+        for (int x = 1; x <= ListaInt.size(); x++) {
+            if (ListaInt.get(x - 1) % 2 == 0) {
+                ListaInt.remove(x - 1);
+            }
+        }
+        for (int x = 0; x < ListaInt.size(); x++) {
+            out.print(ListaInt.get(x) + "  ");
+        }
+
+        out.println();
+        //Crea una función DividePorCero
+        try {
+            divideporcero(3, 0);
+        } catch (ArithmeticException ae) {
+            out.println("Esto no puede hacerse");
+        } finally {
+            out.println("Demo de código");
+        }
+
+        out.println();
+        //Utilizando InputStream y PrintStream
+        try {
+            PrintStream File = new PrintStream("soso.txt");
+            File.println("hola");
+            File.println("svdfdsabahf");
+            InputStream Fileout = new FileInputStream("soso.txt");
+            PrintStream Filein = new PrintStream("copia.txt");
+            PasoFuncion(Fileout, Filein);
+        } catch (Exception ex) {
+            out.println("error en Filein,Fileout" + ex.getMessage());
+
+        }
+
+
+        out.println("el siguiente es el programa a eleccion, yo elegi una calculadora");
+        //Sorpréndenos creando un programa de tu elección
+        //Calculadora
+        HashMap Operaciones = new HashMap<>();
+        Operaciones.put("SUMA", "+");
+        Operaciones.put("RESTA", "-");
+        Operaciones.put("DIVICION", "/");
+        Operaciones.put("MULTIPLICACION", "*");
+        Operaciones.put("MULTIPLICACION1", "x");
+        out.println("solo puedes ingresar operaciones bacicas(+,-,/,* o x)");
+
+        try {
+            PrintStream Historial = new PrintStream("CopiaP.txt");
+            Scanner Colector = new Scanner(System.in);
+            InputStream Leer = new FileInputStream("CopiaP.txt");
+
+            FCalculadora(Historial, Leer, Operaciones, Colector);
+
+
+        } catch (Exception ex) {
+            out.println("error en colector" + ex.getMessage());
+
+        }
+
+
+    }
+
+
+    private static void divideporcero(int a, int b) throws ArithmeticException {
+        try {
+            int resultado = a / b;
+        } catch (ArithmeticException ae) {
+            throw new ArithmeticException();
+        }
+    }
+
+    private static void PasoFuncion(InputStream fileout, PrintStream filein) throws Exception {
+        byte[] datos = fileout.readAllBytes();
+        filein.write(datos);
+    }
+
+    private static void FCalculadora(PrintStream historial, InputStream leer, HashMap operaciones, Scanner colector) {
+        ArrayList<String>CCaracter=new ArrayList<String>();
+        String Texto,Copia;
+        boolean Salir;
+        do {
+
+            do {
+
+                out.println("Puedes acceder a lo sugiente, escribiendo la palabra en mayuscula  ");
+                out.println("1.SALIR de la calculadora   " );
+                out.println("2.Ver el HISTORIAL   " );
+                out.println("3.hacer otra OPERACION   ");
+                Texto= colector.nextLine();
+                if (Texto.equals("SALIR")||Texto.equals("HISTORIAL")||Texto.equals("OPERACION")){
+                    Salir=false;
+                }else {
+                    Salir=true;
+                }
+            } while (Salir == true);
+
+            switch (Texto){
+                case "SALIR":
+                    out.println("Salir");
+                    Salir=false;
+                    break;
+                case "HISTORIAL":
+                    out.println("historial");
+                    try {
+                        byte[]datos=leer.readAllBytes();
+                        out.print(datos);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Salir=true;
+                    break;
+                case     "OPERACION":
+
+                    out.println("Ingrese una operacion basica ( "+operaciones+" )");
+                    /*colector.nextLine();
+                    Copia=colector.toString();*/
+                    Copia="2+3";
+                    for (int a=0;a<Copia.length();a++){
+                        try{
+                            CCaracter.add(Copia.charAt(a)+"");
+
+                        } catch (Exception e) {
+                            break;
+                        }
+                    }
+                    out.println("No voy a expandir mas el codigo para agregar la funcion que separara numeros de ecuaciones ni la funcion que opera, no obstante dejo el convertidor a char y una ecuacion basica por defecto");
+                    for (int a=0;a< CCaracter.size();a++){
+                        out.println(CCaracter.get(a));
+                    }
+                    Salir=true;
+                    break;
+
+            }
+
+
+
+        }while (Salir == true);
+        /*pude haber echo todas las comprobaciones en una funcion,
+            pero no queria que se perdiera la linea al visualisar su codigo;
+            agregando que este punto no aparentaba ser obligatorio*/
+    }
+}
+
