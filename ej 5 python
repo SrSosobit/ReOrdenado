@@ -1,0 +1,11 @@
+def funbisiesto(año):
+    bisiesto=año%4
+    if bisiesto==0:
+        print (año)
+        print (" es bisiesto")
+    else:
+        print (año)
+        print ("no es bisiesto")
+
+año=int(input("ingrese el año "))
+funbisiesto(año)
