@@ -1,0 +1,38 @@
+class Alumno:
+    Nombre=None
+    Nota=None
+
+    def __init__(self,Nombre,Nota):
+        self.Nombre=Nombre
+        self.Nota=Nota
+    
+    def Calificacion(self,PromedioT):
+        if(float(PromedioT)>4):
+            print("Aprobo")
+        else:
+            print("Reprobo")
+
+
+def Promedio(a,b):
+    c=None
+    c=a+b
+    c/=2
+    return c
+
+
+a=1
+Valor1=None
+Valor2=None
+CNotas=None
+Nombre=str(input("Ingrese el nombre del alumno: "))
+CNotas=int(input("Ingrese la cantidad de notas a promediar: "))
+
+Valor1=int(input("ingrese la " + str(a) + "° nota "))
+if CNotas>1:
+    while int(a)<CNotas:
+        a+=1
+        Valor2=int(input("ingrese la " + str(a) + "° nota "))
+        Valor1=Promedio(Valor1,Valor2)
+
+Alumno1=Alumno(Nombre,Valor1)
+Alumno1.Calificacion(Alumno1.Nota)
