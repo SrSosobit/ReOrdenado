@@ -1,0 +1,26 @@
+def abrir_1():
+    arc_txt=open('soso.txt','w')
+
+    listastr="abrir cerrar ajustar"
+    
+    arc_txt.write(listastr)
+
+    arc_txt.close()
+    
+
+def abrir_2():
+    arc_txt=open('soso.txt','w')
+
+    listastr="ensalada de pc"
+
+    arc_txt.write(listastr)
+
+    arc_txt.close()
+
+def main():
+    abrir_1()
+    print("abrir cerrar ajustar")
+    abrir_2()
+
+if __name__=="__main__":
+    main()
