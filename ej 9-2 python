@@ -1,0 +1,17 @@
+from functools import reduce
+def fun2num(x):
+    if x % 2 == 1:
+        return True
+    return False
+
+def suma(a,b):
+    return a+b
+    
+def main():
+    Lista=[1,2,3,1,3,6,2,4,8,2,5]
+    Lista=filter(fun2num,Lista)
+    Lista = reduce(suma,Lista)
+    print(Lista)
+
+if __name__=="__main__":
+    main()
