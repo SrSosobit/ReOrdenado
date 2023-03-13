@@ -1,0 +1,14 @@
+def main():
+    
+    InList=input("ingrese una lista de paises separada por comas= ejm: Colombia,España,Panama \n")
+    
+    InList=InList.upper()
+    InList=InList.replace(" ","")
+    InList=InList.split(',')
+    InList=set(InList)
+    InList=sorted( InList )
+    InList=",".join(InList)
+    print(InList)
+
+if __name__=="__main__":
+    main()
