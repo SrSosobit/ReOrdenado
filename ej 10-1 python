@@ -1,0 +1,30 @@
+import tkinter
+
+window =tkinter.Tk()
+seleccion=tkinter.StringVar()
+monitor = tkinter.Label(window)
+
+def imprimir():
+    monitor.config(text="{}".format(seleccion.get()))
+    
+def barrido():
+    seleccion.set(None)
+    monitor.config(text="")
+
+def main():
+
+    tkinter.Radiobutton(window, text="Opción 1",variable=seleccion,  
+                        value=1, command=imprimir).pack()
+    tkinter.Radiobutton(window, text="Opción 2",variable=seleccion,
+                        value=2,  command=imprimir).pack()
+    tkinter.Radiobutton(window, text="Opción 3",variable=seleccion,
+                        value=3, command=imprimir).pack()
+
+    monitor.pack()
+
+    tkinter.Button(window,text="reiniciar",command=barrido).pack()
+
+    window.mainloop()
+
+if __name__=="__main__":
+    main()
