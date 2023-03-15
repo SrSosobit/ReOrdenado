@@ -1,0 +1,19 @@
+import tkinter
+
+window =tkinter.Tk()
+
+def main():
+
+    label_saludo=tkinter.Label(window,text=("De que color era el caballo blanco de colon?"))
+    listaV=["negro","rojo","blanco","cafe"]
+    label_list=tkinter.StringVar(value=listaV)
+    label_list=tkinter.Listbox(window, width=20, height=4,listvariable=label_list)
+
+    
+    label_saludo.pack()
+    label_list.pack()
+    window.mainloop()
+
+
+if __name__=="__main__":
+    main()
